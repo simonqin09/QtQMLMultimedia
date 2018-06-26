@@ -379,7 +379,7 @@ Window {
 
                 onStopped: {
                     // player status is MediaPlayer.EndOfMedia (6)
-                    if(player.status == 6)
+                    if(player.status === MediaPlayer.EndOfMedia)
                     {
                         rectangle_play.color = "#ffffff"
                     }
@@ -417,6 +417,12 @@ Window {
                     onReleased: {
                         parent.color = "#ffffff";
                         camera_mode_visible = true;
+                        if (player.playbackState == 1){
+                            player.pause();
+                            rectangle_pause.color = "yellow";
+                            rectangle_play.color = "#ffffff"
+                        }
+
                         cameramodeloader.source = "CameraMode.qml"
                     }
                 }
